@@ -54,7 +54,10 @@ public class ChatClient extends Application {
             @Override
             public void onNext(Chat.ChatMessageFromServer value) {
                 Platform.runLater(() -> {
-                    messages.add(value.getMessage().getFrom() + ": " + value.getMessage().getMessage());
+                    if (value.getMessage().getMessage().equals("HAS CONNECTED") || value.getMessage().getMessage().equals("HAS DISCONNECTED"))
+                        messages.add(value.getMessage().getFrom() + " " + value.getMessage().getMessage());
+                    else
+                        messages.add(value.getMessage().getFrom() + ": " + value.getMessage().getMessage());
                     if (!users.contains(value.getMessage().getFrom()))
                         users.add(value.getMessage().getFrom());
                 });
@@ -70,6 +73,8 @@ public class ChatClient extends Application {
 
             }
         });
+        observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage("HAS CONNECTED").build());
+        //TODO implement observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage("HAS DISCONNECTED").build());
         send.setOnAction(e -> {
             observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage(message.getText()).build());
         });
