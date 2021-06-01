@@ -7,15 +7,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.util.Scanner;
+
 public class ChatClient extends Application {
     private ObservableList<String> messages = FXCollections.observableArrayList();
     private ListView<String> messagesView = new ListView<>();
-    private TextField name = new TextField("Name");
+    Scanner sc = new Scanner(System.in);
+    String userName = sc.next();
+    private Label name = new Label(userName);
     private TextField message = new TextField();
     private Button send = new Button("Send");
 
