@@ -24,11 +24,13 @@ public class ChatClient extends Application {
 
         primaryStage.setTitle("Chat");
         primaryStage.setScene(new Scene(root,800,600));
+
+        primaryStage.show();
     }
     public void start(Stage primaryStage) {
-        //TODO
+        init(primaryStage);
     }
     public static void  Main(String[] args){
-        //TODO
+        launch(args);
     }
 }
