@@ -706,28 +706,15 @@ public final class Chat {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    boolean hasTimestamp();
-    /**
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    com.google.protobuf.Timestamp getTimestamp();
-    /**
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder();
-
-    /**
-     * <code>.ChatMessage message = 2;</code>
+     * <code>.ChatMessage message = 1;</code>
      */
     boolean hasMessage();
     /**
-     * <code>.ChatMessage message = 2;</code>
+     * <code>.ChatMessage message = 1;</code>
      */
     proto.Chat.ChatMessage getMessage();
     /**
-     * <code>.ChatMessage message = 2;</code>
+     * <code>.ChatMessage message = 1;</code>
      */
     proto.Chat.ChatMessageOrBuilder getMessageOrBuilder();
   }
@@ -771,19 +758,6 @@ public final class Chat {
               done = true;
               break;
             case 10: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (timestamp_ != null) {
-                subBuilder = timestamp_.toBuilder();
-              }
-              timestamp_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(timestamp_);
-                timestamp_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
               proto.Chat.ChatMessage.Builder subBuilder = null;
               if (message_ != null) {
                 subBuilder = message_.toBuilder();
@@ -828,43 +802,22 @@ public final class Chat {
               proto.Chat.ChatMessageFromServer.class, proto.Chat.ChatMessageFromServer.Builder.class);
     }
 
-    public static final int TIMESTAMP_FIELD_NUMBER = 1;
-    private com.google.protobuf.Timestamp timestamp_;
-    /**
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    public boolean hasTimestamp() {
-      return timestamp_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    public com.google.protobuf.Timestamp getTimestamp() {
-      return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-     */
-    public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
-      return getTimestamp();
-    }
-
-    public static final int MESSAGE_FIELD_NUMBER = 2;
+    public static final int MESSAGE_FIELD_NUMBER = 1;
     private proto.Chat.ChatMessage message_;
     /**
-     * <code>.ChatMessage message = 2;</code>
+     * <code>.ChatMessage message = 1;</code>
      */
     public boolean hasMessage() {
       return message_ != null;
     }
     /**
-     * <code>.ChatMessage message = 2;</code>
+     * <code>.ChatMessage message = 1;</code>
      */
     public proto.Chat.ChatMessage getMessage() {
       return message_ == null ? proto.Chat.ChatMessage.getDefaultInstance() : message_;
     }
     /**
-     * <code>.ChatMessage message = 2;</code>
+     * <code>.ChatMessage message = 1;</code>
      */
     public proto.Chat.ChatMessageOrBuilder getMessageOrBuilder() {
       return getMessage();
@@ -884,11 +837,8 @@ public final class Chat {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (timestamp_ != null) {
-        output.writeMessage(1, getTimestamp());
-      }
       if (message_ != null) {
-        output.writeMessage(2, getMessage());
+        output.writeMessage(1, getMessage());
       }
       unknownFields.writeTo(output);
     }
@@ -899,13 +849,9 @@ public final class Chat {
       if (size != -1) return size;
 
       size = 0;
-      if (timestamp_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getTimestamp());
-      }
       if (message_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getMessage());
+          .computeMessageSize(1, getMessage());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -923,11 +869,6 @@ public final class Chat {
       proto.Chat.ChatMessageFromServer other = (proto.Chat.ChatMessageFromServer) obj;
 
       boolean result = true;
-      result = result && (hasTimestamp() == other.hasTimestamp());
-      if (hasTimestamp()) {
-        result = result && getTimestamp()
-            .equals(other.getTimestamp());
-      }
       result = result && (hasMessage() == other.hasMessage());
       if (hasMessage()) {
         result = result && getMessage()
@@ -944,10 +885,6 @@ public final class Chat {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTimestamp()) {
-        hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-        hash = (53 * hash) + getTimestamp().hashCode();
-      }
       if (hasMessage()) {
         hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
         hash = (53 * hash) + getMessage().hashCode();
@@ -1085,12 +1022,6 @@ public final class Chat {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (timestampBuilder_ == null) {
-          timestamp_ = null;
-        } else {
-          timestamp_ = null;
-          timestampBuilder_ = null;
-        }
         if (messageBuilder_ == null) {
           message_ = null;
         } else {
@@ -1123,11 +1054,6 @@ public final class Chat {
       @java.lang.Override
       public proto.Chat.ChatMessageFromServer buildPartial() {
         proto.Chat.ChatMessageFromServer result = new proto.Chat.ChatMessageFromServer(this);
-        if (timestampBuilder_ == null) {
-          result.timestamp_ = timestamp_;
-        } else {
-          result.timestamp_ = timestampBuilder_.build();
-        }
         if (messageBuilder_ == null) {
           result.message_ = message_;
         } else {
@@ -1181,9 +1107,6 @@ public final class Chat {
 
       public Builder mergeFrom(proto.Chat.ChatMessageFromServer other) {
         if (other == proto.Chat.ChatMessageFromServer.getDefaultInstance()) return this;
-        if (other.hasTimestamp()) {
-          mergeTimestamp(other.getTimestamp());
-        }
         if (other.hasMessage()) {
           mergeMessage(other.getMessage());
         }
@@ -1216,134 +1139,17 @@ public final class Chat {
         return this;
       }
 
-      private com.google.protobuf.Timestamp timestamp_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timestampBuilder_;
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      public boolean hasTimestamp() {
-        return timestampBuilder_ != null || timestamp_ != null;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      public com.google.protobuf.Timestamp getTimestamp() {
-        if (timestampBuilder_ == null) {
-          return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
-        } else {
-          return timestampBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      public Builder setTimestamp(com.google.protobuf.Timestamp value) {
-        if (timestampBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          timestamp_ = value;
-          onChanged();
-        } else {
-          timestampBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      public Builder setTimestamp(
-          com.google.protobuf.Timestamp.Builder builderForValue) {
-        if (timestampBuilder_ == null) {
-          timestamp_ = builderForValue.build();
-          onChanged();
-        } else {
-          timestampBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      public Builder mergeTimestamp(com.google.protobuf.Timestamp value) {
-        if (timestampBuilder_ == null) {
-          if (timestamp_ != null) {
-            timestamp_ =
-              com.google.protobuf.Timestamp.newBuilder(timestamp_).mergeFrom(value).buildPartial();
-          } else {
-            timestamp_ = value;
-          }
-          onChanged();
-        } else {
-          timestampBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      public Builder clearTimestamp() {
-        if (timestampBuilder_ == null) {
-          timestamp_ = null;
-          onChanged();
-        } else {
-          timestamp_ = null;
-          timestampBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      public com.google.protobuf.Timestamp.Builder getTimestampBuilder() {
-        
-        onChanged();
-        return getTimestampFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
-        if (timestampBuilder_ != null) {
-          return timestampBuilder_.getMessageOrBuilder();
-        } else {
-          return timestamp_ == null ?
-              com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
-        }
-      }
-      /**
-       * <code>.google.protobuf.Timestamp timestamp = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-          getTimestampFieldBuilder() {
-        if (timestampBuilder_ == null) {
-          timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                  getTimestamp(),
-                  getParentForChildren(),
-                  isClean());
-          timestamp_ = null;
-        }
-        return timestampBuilder_;
-      }
-
       private proto.Chat.ChatMessage message_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.Chat.ChatMessage, proto.Chat.ChatMessage.Builder, proto.Chat.ChatMessageOrBuilder> messageBuilder_;
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       public boolean hasMessage() {
         return messageBuilder_ != null || message_ != null;
       }
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       public proto.Chat.ChatMessage getMessage() {
         if (messageBuilder_ == null) {
@@ -1353,7 +1159,7 @@ public final class Chat {
         }
       }
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       public Builder setMessage(proto.Chat.ChatMessage value) {
         if (messageBuilder_ == null) {
@@ -1369,7 +1175,7 @@ public final class Chat {
         return this;
       }
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       public Builder setMessage(
           proto.Chat.ChatMessage.Builder builderForValue) {
@@ -1383,7 +1189,7 @@ public final class Chat {
         return this;
       }
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       public Builder mergeMessage(proto.Chat.ChatMessage value) {
         if (messageBuilder_ == null) {
@@ -1401,7 +1207,7 @@ public final class Chat {
         return this;
       }
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       public Builder clearMessage() {
         if (messageBuilder_ == null) {
@@ -1415,7 +1221,7 @@ public final class Chat {
         return this;
       }
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       public proto.Chat.ChatMessage.Builder getMessageBuilder() {
         
@@ -1423,7 +1229,7 @@ public final class Chat {
         return getMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       public proto.Chat.ChatMessageOrBuilder getMessageOrBuilder() {
         if (messageBuilder_ != null) {
@@ -1434,7 +1240,7 @@ public final class Chat {
         }
       }
       /**
-       * <code>.ChatMessage message = 2;</code>
+       * <code>.ChatMessage message = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.Chat.ChatMessage, proto.Chat.ChatMessage.Builder, proto.Chat.ChatMessageOrBuilder> 
@@ -1521,11 +1327,9 @@ public final class Chat {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nChat.proto\032\037google/protobuf/timestamp." +
-      "proto\",\n\013ChatMessage\022\014\n\004from\030\001 \001(\t\022\017\n\007me" +
-      "ssage\030\002 \001(\t\"e\n\025ChatMessageFromServer\022-\n\t" +
-      "timestamp\030\001 \001(\0132\032.google.protobuf.Timest" +
-      "amp\022\035\n\007message\030\002 \001(\0132\014.ChatMessage2A\n\013Ch" +
+      "\n\nChat.proto\",\n\013ChatMessage\022\014\n\004from\030\001 \001(" +
+      "\t\022\017\n\007message\030\002 \001(\t\"6\n\025ChatMessageFromSer" +
+      "ver\022\035\n\007message\030\001 \001(\0132\014.ChatMessage2A\n\013Ch" +
       "atService\0222\n\004chat\022\014.ChatMessage\032\026.ChatMe" +
       "ssageFromServer\"\000(\0010\001B\007\n\005protob\006proto3"
     };
@@ -1540,7 +1344,6 @@ public final class Chat {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf.TimestampProto.getDescriptor(),
         }, assigner);
     internal_static_ChatMessage_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -1553,8 +1356,7 @@ public final class Chat {
     internal_static_ChatMessageFromServer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ChatMessageFromServer_descriptor,
-        new java.lang.String[] { "Timestamp", "Message", });
-    com.google.protobuf.TimestampProto.getDescriptor();
+        new java.lang.String[] { "Message", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

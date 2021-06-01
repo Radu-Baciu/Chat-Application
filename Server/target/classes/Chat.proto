@@ -1,6 +1,5 @@
 syntax = "proto3";
 option java_package = "proto";
-import "google/protobuf/timestamp.proto";
 
 message ChatMessage {
   string from = 1;
@@ -8,8 +7,7 @@ message ChatMessage {
 }
 
 message ChatMessageFromServer {
-  google.protobuf.Timestamp timestamp = 1;
-  ChatMessage message = 2;
+    ChatMessage message = 1;
 }
 
 service ChatService {

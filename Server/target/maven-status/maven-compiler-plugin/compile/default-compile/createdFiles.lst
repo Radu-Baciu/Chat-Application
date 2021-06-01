@@ -1,6 +1,7 @@
 proto\ChatServiceGrpc$MethodHandlers.class
 proto\ChatServiceGrpc$ChatServiceMethodDescriptorSupplier.class
 proto\Chat$1.class
+services\ChatServiceImpl$1.class
 proto\Chat$ChatMessage$1.class
 proto\Chat.class
 proto\ChatServiceGrpc$1.class
@@ -8,6 +9,7 @@ proto\ChatServiceGrpc$ChatServiceBlockingStub.class
 proto\Chat$ChatMessageOrBuilder.class
 proto\Chat$ChatMessageFromServer.class
 proto\Chat$ChatMessageFromServerOrBuilder.class
+ChatServer.class
 proto\Chat$ChatMessage$Builder.class
 proto\ChatServiceGrpc$ChatServiceBaseDescriptorSupplier.class
 proto\Chat$ChatMessage.class
@@ -18,3 +20,4 @@ proto\ChatServiceGrpc.class
 proto\ChatServiceGrpc$ChatServiceFileDescriptorSupplier.class
 proto\ChatServiceGrpc$ChatServiceStub.class
 proto\Chat$ChatMessageFromServer$Builder.class
+services\ChatServiceImpl.class
