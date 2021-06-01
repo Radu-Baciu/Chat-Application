@@ -2,6 +2,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -19,6 +20,8 @@ public class ChatClient extends Application {
     private Button send = new Button("Send");
 
     public void init(Stage primaryStage) {
+        messagesView.setItems(messages);
+
         BorderPane sendMessage = new BorderPane();
         sendMessage.setLeft(name);
         sendMessage.setCenter(message);
@@ -41,7 +44,9 @@ public class ChatClient extends Application {
         StreamObserver<Chat.ChatMessage> observer = chatService.chat(new StreamObserver<Chat.ChatMessageFromServer>() {
             @Override
             public void onNext(Chat.ChatMessageFromServer value) {
-                messages.add(value.getMessage().getFrom() + ": " + value.getMessage().getMessage());
+                Platform.runLater(() -> {
+                    messages.add(value.getMessage().getFrom() + ": " + value.getMessage().getMessage());
+                });
             }
 
             @Override
@@ -53,6 +58,9 @@ public class ChatClient extends Application {
             public void onCompleted() {
 
             }
+        });
+        send.setOnAction(e -> {
+            observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage(message.getText()).build());
         });
     }
     public static void  Main(String[] args){
