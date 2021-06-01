@@ -55,6 +55,8 @@ public class ChatClient extends Application {
             public void onNext(Chat.ChatMessageFromServer value) {
                 Platform.runLater(() -> {
                     messages.add(value.getMessage().getFrom() + ": " + value.getMessage().getMessage());
+                    if (!users.contains(value.getMessage().getFrom()))
+                        users.add(value.getMessage().getFrom());
                 });
             }
 
