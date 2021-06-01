@@ -20,8 +20,7 @@ public class ChatClient extends Application {
     private ListView<String> messagesView = new ListView<>();
     private ObservableList<String> users = FXCollections.observableArrayList();
     private ListView<String> usersView = new ListView<>();
-    Scanner sc = new Scanner(System.in);
-    String userName = sc.next();
+
     private TextField message = new TextField();
     private Button send = new Button("Send");
     private Button exit = new Button("Exit");
@@ -47,6 +46,9 @@ public class ChatClient extends Application {
     }
 
     public void start(Stage primaryStage) {
+        System.out.println("Type your username: ");
+        Scanner sc = new Scanner(System.in);
+        String userName = sc.next();
         init(primaryStage);
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",8999).usePlaintext().build();
         ChatServiceGrpc.ChatServiceStub chatService = ChatServiceGrpc.newStub(channel);
