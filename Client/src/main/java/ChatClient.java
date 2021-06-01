@@ -1,3 +1,6 @@
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,5 +35,24 @@ public class ChatClient extends Application {
     }
     public static void  Main(String[] args){
         launch(args);
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",8999).usePlaintext().build();
+        ChatServiceGrpc.ChatServiceStub chatService = ChatServiceGrpc.newStub(channel);
+
+        StreamObserver<Chat.ChatMessage> observer = chatService.chat(new StreamObserver<Chat.ChatMessageFromServer>() {
+            @Override
+            public void onNext(Chat.ChatMessageFromServer value) {
+
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+        });
     }
 }
