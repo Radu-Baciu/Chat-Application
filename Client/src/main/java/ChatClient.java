@@ -22,7 +22,6 @@ public class ChatClient extends Application {
     private ListView<String> usersView = new ListView<>();
     Scanner sc = new Scanner(System.in);
     String userName = sc.next();
-    private Label name = new Label(userName);
     private TextField message = new TextField();
     private Button send = new Button("Send");
     private Button exit = new Button("Exit");
@@ -75,13 +74,12 @@ public class ChatClient extends Application {
 
             }
         });
-        observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage("HAS CONNECTED").build());
-        //TODO implement observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage("HAS DISCONNECTED").build());
+        observer.onNext(Chat.ChatMessage.newBuilder().setFrom(userName).setMessage("HAS CONNECTED").build());
         send.setOnAction(e -> {
-            observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage(message.getText()).build());
+            observer.onNext(Chat.ChatMessage.newBuilder().setFrom(userName).setMessage(message.getText()).build());
         });
         exit.setOnAction(e -> {
-            observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage("HAS DISCONNECTED").build());
+            observer.onNext(Chat.ChatMessage.newBuilder().setFrom(userName).setMessage("HAS DISCONNECTED").build());
             primaryStage.close();
         });
     }
