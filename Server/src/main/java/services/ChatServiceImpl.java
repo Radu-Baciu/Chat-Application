@@ -15,17 +15,22 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
         return new StreamObserver<Chat.ChatMessage>() {
             @Override
             public void onNext(Chat.ChatMessage value) {
+                System.out.println(value);
+                for (StreamObserver<Chat.ChatMessageFromServer> observer : observers) {
+                    observer.onNext(Chat.ChatMessageFromServer.newBuilder().setMessage(value).build());
+                }
 
             }
 
             @Override
             public void onError(Throwable t) {
-
+                observers.remove(responseObserver);
+                responseObserver.onError(t);
             }
 
             @Override
             public void onCompleted() {
-
+                observers.remove(responseObserver);
             }
         };
     }
