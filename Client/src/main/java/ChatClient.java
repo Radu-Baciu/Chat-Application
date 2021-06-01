@@ -25,13 +25,14 @@ public class ChatClient extends Application {
     private Label name = new Label(userName);
     private TextField message = new TextField();
     private Button send = new Button("Send");
+    private Button exit = new Button("Exit");
 
     public void init(Stage primaryStage) {
         messagesView.setItems(messages);
         usersView.setItems(users);
 
         BorderPane sendMessage = new BorderPane();
-        sendMessage.setLeft(name);
+        sendMessage.setLeft(exit);
         sendMessage.setCenter(message);
         sendMessage.setRight(send);
 
@@ -45,6 +46,7 @@ public class ChatClient extends Application {
 
         primaryStage.show();
     }
+
     public void start(Stage primaryStage) {
         init(primaryStage);
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",8999).usePlaintext().build();
@@ -77,6 +79,10 @@ public class ChatClient extends Application {
         //TODO implement observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage("HAS DISCONNECTED").build());
         send.setOnAction(e -> {
             observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage(message.getText()).build());
+        });
+        exit.setOnAction(e -> {
+            observer.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage("HAS DISCONNECTED").build());
+            primaryStage.close();
         });
     }
     public static void  Main(String[] args){
