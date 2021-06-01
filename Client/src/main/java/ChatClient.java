@@ -18,6 +18,8 @@ import java.util.Scanner;
 public class ChatClient extends Application {
     private ObservableList<String> messages = FXCollections.observableArrayList();
     private ListView<String> messagesView = new ListView<>();
+    private ObservableList<String> users = FXCollections.observableArrayList();
+    private ListView<String> usersView = new ListView<>();
     Scanner sc = new Scanner(System.in);
     String userName = sc.next();
     private Label name = new Label(userName);
@@ -26,6 +28,7 @@ public class ChatClient extends Application {
 
     public void init(Stage primaryStage) {
         messagesView.setItems(messages);
+        usersView.setItems(users);
 
         BorderPane sendMessage = new BorderPane();
         sendMessage.setLeft(name);
@@ -33,6 +36,7 @@ public class ChatClient extends Application {
         sendMessage.setRight(send);
 
         BorderPane root = new BorderPane();
+        root.setLeft(usersView);
         root.setCenter(messagesView);
         root.setBottom(sendMessage);
 
